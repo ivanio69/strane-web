@@ -44,7 +44,7 @@ export default function App({
       </div>
       <div className="appContainer">
         <LazyMotion features={domAnimation}>
-          <AnimatePresence exitBeforeEnter={!exitBefore}>
+          <AnimatePresence>
             <m.div
               key={router.route.concat(animation.name)}
               className="page-wrap"
