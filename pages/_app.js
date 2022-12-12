@@ -26,7 +26,6 @@ export default function App({
       },
     },
     transition: {
-      delay: 0.1,
       duration: 0.3,
     },
   };
