@@ -27,6 +27,7 @@ export default function App({
     },
     transition: {
       duration: 0.3,
+      delayChildren: 0.5,
     },
   };
   const [exitBefore, setExitBefore] = useState(false);
@@ -44,7 +45,7 @@ export default function App({
       </div>
       <div className="appContainer">
         <LazyMotion features={domAnimation}>
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             <m.div
               key={router.route.concat(animation.name)}
               className="page-wrap"
