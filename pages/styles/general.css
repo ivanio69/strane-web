@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700;800;900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Jost", sans-serif;
+}
+
+.titlebar {
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  font-weight: 700;
+  color: #000;
+}
+
+.titlebar span {
+  color: #6349ff;
+}
+
+.cbt {
+  color: #585858 !important;
+  font-style: italic;
+}
+
+.appContainer {
+  min-height: calc(90vh-30px);
+  padding-top: 30px;
+}
+
+.animate-in {
+  -webkit-animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.animate-out {
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
