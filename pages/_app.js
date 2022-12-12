@@ -54,6 +54,7 @@ export default function App({
               exit="exit"
               variants={animation.variants}
               transition={animation.transition}
+              opacity={0}
             >
               <Component {...pageProps} />
             </m.div>
