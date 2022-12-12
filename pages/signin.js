@@ -4,7 +4,7 @@ import styles from "./styles/auth.module.css";
 function Next() {
   return (
     <React.Fragment>
-      <Link href="/home">
+      <Link href="/">
         <p className={styles.back}> {"<"}</p>
       </Link>
 

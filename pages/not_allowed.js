@@ -17,7 +17,7 @@ function Home() {
     <React.Fragment>
       <div className={styles.container}>
         <p>We are sorry, but Strane does not work for mobile devices yet.</p>
-        <Link href="/home">Go home </Link>
+        <Link href="/">Go home </Link>
       </div>
     </React.Fragment>
   );
