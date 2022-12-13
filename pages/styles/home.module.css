@@ -2,13 +2,14 @@
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-  justify-content: center;
+  justify-content: space-evenly;
   height: 100vh;
   align-items: center;
   color: #fff;
   background: linear-gradient(253.37deg, #6349ff, #e3a9ff);
   animation: gradient 10s ease infinite;
   background-size: 200% 200%;
+  flex-direction: row;
 }
 
 @keyframes gradient {
@@ -35,7 +36,7 @@
 }
 
 .title {
-  width: 50vw;
+  /* max-width: 50vw; */
   font-size: 4rem;
   text-transform: uppercase;
 }
@@ -45,7 +46,7 @@
 }
 
 .text {
-  width: 50vw;
+  /* max-width: 50vw; */
 }
 
 .button {
