@@ -3,12 +3,28 @@
   flex-wrap: wrap;
   text-align: center;
   justify-content: center;
-  height: 70vh;
-  align-content: space-between;
-  padding-top: 20vh;
+  height: 100vh;
+  align-items: center;
+  color: #fff;
+  background: linear-gradient(253.37deg, #6349ff, #e3a9ff);
+  animation: gradient 10s ease infinite;
+  background-size: 200% 200%;
 }
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .container div {
-  width: 100%;
+  width: 100vw;
 }
 
 .welcome {
@@ -19,6 +35,7 @@
 }
 
 .title {
+  width: 50vw;
   font-size: 4rem;
   text-transform: uppercase;
 }
@@ -27,34 +44,26 @@
   color: #6349ff;
 }
 
+.text {
+  width: 50vw;
+}
+
 .button {
-  background-color: #6349ff;
-  color: #fff;
+  background-color: #fff;
+  color: #6349ff;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 10px;
+  padding: 15px 25px;
   font-size: 1.1rem;
   font-weight: 500;
-  margin-top: 1rem;
+  display: inline-block;
+  margin: 2rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   width: 400px;
-}
-
-@media (max-width: 632px) {
-  .button {
-    width: 250px;
-  }
+  text-decoration: none;
 }
 
 .button:hover {
-  background-color: #5a3fde;
-}
-
-.signin {
-  margin-top: 1rem;
-}
-
-.lnk {
-  color: #6349ff;
+  background-color: #e3a9ff;
 }

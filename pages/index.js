@@ -1,46 +1,26 @@
-import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import React from "react";
 import styles from "./styles/home.module.css";
 
 function Home() {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
-      setIsMobile(true);
-    }
-  }, []);
   return (
     <React.Fragment>
       <div className={styles.container}>
-        <div>
-          <h2 className={styles.welcome}>Welcome to the</h2>
-
-          <h1 className={styles.title}>
-            <span>S</span>trane<span>.</span>
-          </h1>
-        </div>
-        <div>
-          <Link href={isMobile ? "/not_allowed" : "/signup"}>
-            <button className={styles.button}>Start</button>
-          </Link>
-          <p className={styles.signin}>
-            Already have an account?{" "}
+        <h1 className={styles.title}>
+          <span>S</span>trane<span>.</span>
+        </h1>
+        <h2 className={styles.text}>
+          {" "}
+          Coming soon...
+          <p>
             <Link
-              href={isMobile ? "/not_allowed" : "/signin"}
-              className={styles.lnk}
+              href="https://github.com/lifecats/strane-web/"
+              className={styles.button}
             >
-              Log In
+              Check out our github
             </Link>
           </p>
-        </div>
-        <p className={styles.tos}>
-          By continuing you accept our standard terms and condition and our
-          privacy policy.
-        </p>
+        </h2>
       </div>
     </React.Fragment>
   );
