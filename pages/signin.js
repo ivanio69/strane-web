@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 function Next() {
   const { session } = useSession();
   const [loggedIn, setLoggedIn] = useState(false);
-  const animation = animlib[0];
   useEffect(() => {
     if (typeof session !== "undefined") {
       setLoggedIn(true);
