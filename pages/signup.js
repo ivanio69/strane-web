@@ -8,7 +8,7 @@ function Next() {
   const { data: session, status } = useSession();
   useEffect(() => {
     if (typeof session !== "undefined") {
-      window.locatiobn.href = "/me";
+      window.location.href = "/me";
     }
   }, [session]);
   return (
