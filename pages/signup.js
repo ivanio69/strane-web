@@ -3,6 +3,12 @@ import Link from "next/link";
 import styles from "./styles/auth.module.css";
 import Image from "next/image";
 function Next() {
+  const { data: session, status } = useSession();
+  useEffect(() => {
+    if (typeof session !== "undefined") {
+      window.locatiobn.href = "/me";
+    }
+  }, [session]);
   return (
     <React.Fragment>
       <Link href="/">
