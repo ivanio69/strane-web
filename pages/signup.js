@@ -5,9 +5,10 @@ import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 
 function Next() {
-  const { data: session, status } = useSession();
+  const { session } = useSession();
+
   useEffect(() => {
-    if (typeof data !== "undefined") {
+    if (typeof session !== "undefined") {
       window.location.href = "/me";
     }
   }, []);

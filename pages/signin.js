@@ -6,12 +6,12 @@ import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 
 function Next() {
-  const { data: session, status } = useSession()
+  const { session } = useSession();
   useEffect(() => {
-    if (typeof data !== "undefined") {
-      window.location.href = "/me"
+    if (typeof session !== "undefined") {
+      window.location.href = "/me";
     }
-  }, [])
+  }, []);
   return (
     <React.Fragment>
       <Link href="/">
