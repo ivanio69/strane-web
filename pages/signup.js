@@ -7,10 +7,10 @@ import { signIn, useSession } from "next-auth/react";
 function Next() {
   const { data: session, status } = useSession();
   useEffect(() => {
-    if (typeof session !== "undefined") {
+    if (typeof data !== "undefined") {
       window.location.href = "/me";
     }
-  }, [session]);
+  }, []);
   return (
     <React.Fragment>
       <Link href="/">

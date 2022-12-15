@@ -8,10 +8,10 @@ import { toast } from "react-toastify";
 function Next() {
   const { data: session, status } = useSession()
   useEffect(() => {
-    if (typeof session !== "undefined") {
+    if (typeof data !== "undefined") {
       window.location.href = "/me"
     }
-  }, [session])
+  }, [])
   return (
     <React.Fragment>
       <Link href="/">

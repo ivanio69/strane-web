@@ -6,10 +6,10 @@ import { signIn, useSession } from "next-auth/react";
 function Next() {
   const { data: session, status } = useSession();
   useEffect(() => {
-    if (typeof session !== "undefined") {
+    if (typeof data !== "undefined") {
       window.locatiobn.href = "/me";
     }
-  }, [session]);
+  }, [data]);
   return <React.Fragment>{JSON.stringify(session.user)}</React.Fragment>;
 }
 export default Next;
