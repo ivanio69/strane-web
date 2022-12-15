@@ -118,3 +118,26 @@
   margin-left: 20px;
   font-size: 1.2rem;
 }
+
+.lgin {
+  color: #000;
+  text-align: left;
+}
+
+.loggedin {
+  padding: 0 10px;
+}
+
+.user {
+  background: #f1f1f1;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
+.logout {
+  text-align: right;
+  color: red;
+  font-weight: 500;
+  cursor: pointer;
+}
