@@ -27,7 +27,7 @@ function Home() {
           <Link href={isMobile ? "/not_allowed" : "/signup"}>
             <button className={styles.button}>Start</button>
           </Link>
-          <p className={styles.signin}>
+          <p className={styles.switch}>
             Already have an account?{" "}
             <Link
               href={isMobile ? "/not_allowed" : "/signin"}

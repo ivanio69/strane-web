@@ -1,6 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./styles/auth.module.css";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
+import { toast } from "react-toastify";
 function Next() {
   return (
     <React.Fragment>
@@ -15,7 +18,14 @@ function Next() {
           </h1>
           <h2 className={styles.create}>Log in</h2>
         </div>
-        <form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            toast.error(
+              "We are sorry, but password authentication is not yet supported."
+            );
+          }}
+        >
           <input className={styles.input} type="email" placeholder="Email" />
           <div className={styles.lb} />
           <input
@@ -26,15 +36,27 @@ function Next() {
           <div className={styles.lb} />
 
           <input className={styles.button} type="submit" value="Sign In" />
+          <p className={styles.switch}>
+            Dont have an account yet?{" "}
+            <Link href="/signup" className={styles.lnk}>
+              Create account
+            </Link>
+          </p>
         </form>
         <div className={styles.lb} />
 
-        <p className={styles.signup}>
-          Dont have an account yet?{" "}
-          <Link href="/signup" className={styles.lnk}>
-            Create account
-          </Link>
-        </p>
+        <div className={styles.googlebox}>
+          <span>Or use authentication provider:</span>{" "}
+          <div
+            className={styles.item}
+            onClick={() => {
+              signIn("google");
+            }}
+          >
+            <Image src="/icons/google.svg" width={30} height={30} />{" "}
+            <span>Google</span>
+          </div>
+        </div>
         <div className={styles.lb} />
 
         <p className={styles.tos}>

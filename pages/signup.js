@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./styles/auth.module.css";
+import Image from "next/image";
 function Next() {
   return (
     <React.Fragment>
@@ -26,14 +27,28 @@ function Next() {
           <div className={styles.lb} />
 
           <input className={styles.button} type="submit" value="Sign Up" />
+
+          <p className={styles.signin}>
+            Already have an account?{" "}
+            <Link href="/signin" className={styles.lnk}>
+              Log In
+            </Link>
+          </p>
         </form>
         <div className={styles.lb} />
-        <p className={styles.signin}>
-          Already have an account?{" "}
-          <Link href="/signin" className={styles.lnk}>
-            Log In
-          </Link>
-        </p>
+
+        <div
+          className={styles.googlebox}
+          onClick={() => {
+            signIn("google");
+          }}
+        >
+          <span>Or use authentication provider:</span>{" "}
+          <div className={styles.item}>
+            <Image src="/icons/google.svg" width={30} height={30} />{" "}
+            <span>Google</span>
+          </div>
+        </div>
         <div className={styles.lb} />
         <p className={styles.tos}>
           By continuing you accept our standard terms and condition and our
