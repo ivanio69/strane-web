@@ -49,7 +49,7 @@ function Next() {
 
             <input className={styles.button} type="submit" value="Sign Up" />
 
-            <p className={styles.signin}>
+            <p className={styles.switch}>
               Already have an account?{" "}
               <Link href="/signin" className={styles.lnk}>
                 Log In
