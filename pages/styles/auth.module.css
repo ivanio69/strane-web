@@ -129,15 +129,23 @@
 }
 
 .user {
-  background: #f1f1f1;
+  /* background: #ffffff; */
+  background-image: url("/placeholders/cards/Developer.png");
+  background-size: cover;
+  color: #fff;
   padding: 20px;
   border-radius: 20px;
   margin: 20px 0;
+  /* border: #000 1px solid; */
 }
 
 .logout {
-  text-align: right;
+  /* text-align: right; */
   color: red;
   font-weight: 500;
   cursor: pointer;
+}
+
+.lgin .image {
+  border-radius: 100%;
 }

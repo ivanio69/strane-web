@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./styles/auth.module.css";
 import Image from "next/image";
-import { signIn, useSession, signOut } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-toastify";
+import LoggedIn from "../lib/components/auth/loggedIn";
 
 function Next() {
   const { data: session } = useSession();
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     console.log(session);
-    if (session) {
+    if (session !== undefined && session !== null) {
       setLoggedIn(true);
     }
   }, [session]);
@@ -29,25 +30,7 @@ function Next() {
           <h2 className={styles.create}>Log in</h2>
         </div>
         {loggedIn ? (
-          <div className={styles.lgin}>
-            <p className={styles.loggedin}>You are already logged in as</p>
-            <div className={styles.user}>
-              <h3 className={styles.name}>{session.user.name}</h3>
-              <p className={styles.email}>{session.user.email}</p>
-              <Link href="/">
-                {" "}
-                <p
-                  className={styles.logout}
-                  onClick={() => {
-                    signOut({ redirect: false });
-                  }}
-                >
-                  Log out
-                </p>
-              </Link>
-            </div>{" "}
-            <button className={styles.button}>Continue</button>
-          </div>
+          <LoggedIn />
         ) : (
           <form
             onSubmit={(e) => {
