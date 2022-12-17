@@ -41,12 +41,6 @@
   width: 400px;
 }
 
-@media (max-width: 632px) {
-  .button {
-    width: 250px;
-  }
-}
-
 .button:hover {
   background-color: #5a3fde;
 }
@@ -57,4 +51,13 @@
 
 .lnk {
   color: #6349ff;
+}
+
+@media screen and (max-width: 768px) {
+  .button {
+    width: 90vw;
+  }
+  .tos {
+    width: 90vw;
+  }
 }

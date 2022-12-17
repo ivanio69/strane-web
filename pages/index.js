@@ -24,15 +24,12 @@ function Home() {
           </h1>
         </div>
         <div>
-          <Link href={isMobile ? "/not_allowed" : "/signup"}>
+          <Link href="/signup">
             <button className={styles.button}>Start</button>
           </Link>
           <p className={styles.switch}>
             Already have an account?{" "}
-            <Link
-              href={isMobile ? "/not_allowed" : "/signin"}
-              className={styles.lnk}
-            >
+            <Link href="/signin" className={styles.lnk}>
               Log In
             </Link>
           </p>
