@@ -23,7 +23,7 @@
   align-content: center;
   align-self: center;
   min-width: 400px;
-  min-height: 400px;
+  min-height: 300px;
 }
 
 .create {
@@ -53,6 +53,7 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   width: 400px;
+  height: 50px;
 }
 
 .button:hover {
