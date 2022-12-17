@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./styles/auth.module.css";
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, useSession, signOut } from "next-auth/react";
 import { toast } from "react-toastify";
 
 function Next() {
-  const { session } = useSession();
+  const { data: session } = useSession();
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
-    if (typeof session !== "undefined") {
+    console.log(session);
+    if (session) {
       setLoggedIn(true);
     }
-  }, []);
+  }, [session]);
 
   return (
     <React.Fragment>

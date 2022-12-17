@@ -5,13 +5,13 @@ import Image from "next/image";
 import { signIn, useSession, signOut } from "next-auth/react";
 
 function Next() {
-  const { session } = useSession();
+  const { data: session } = useSession();
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
-    if (typeof session !== "undefined") {
+    if (session) {
       setLoggedIn(true);
     }
-  }, []);
+  }, [session]);
 
   return (
     <React.Fragment>

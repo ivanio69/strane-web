@@ -43,7 +43,7 @@ export default function App({
         </p>
       </div>
       <div className="appContainer">
-        <SessionProvider>
+        <SessionProvider session={session}>
           <LazyMotion features={domAnimation}>
             <AnimatePresence mode="wait">
               <m.div
