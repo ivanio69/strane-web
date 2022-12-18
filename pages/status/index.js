@@ -34,6 +34,7 @@ export default function StatusPage() {
               const e = JSON.parse(el);
               return (
                 <div
+                  key={el.id}
                   className={styles.item}
                   style={
                     e.s == "W"
