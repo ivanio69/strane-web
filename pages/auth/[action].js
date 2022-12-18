@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from "./styles/auth.module.css";
+import styles from "../styles/auth.module.css";
 import Image from "next/image";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { toast } from "react-toastify";
-import LoggedIn from "../lib/components/auth/loggedIn";
+import LoggedIn from "../../lib/components/auth/loggedIn";
 import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
 import { Grid } from "react-loader-spinner";
-import { animlib } from "../lib/animations";
+import { animlib } from "../../lib/animations";
+import ServerInfo from "../../lib/components/auth/serverInfo";
+import SignUp from "../../lib/components/auth/SignUp";
+import SignIn from "../../lib/components/auth/SignIn";
+import { useRouter } from "next/router";
 
 function Next() {
+  const router = useRouter();
   const { data: session } = useSession();
   const animation = animlib[0];
   const [loading, setLoading] = useState(true);
+  const [serverVerified, setServerVerified] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const { action } = router.query;
+
   useEffect(() => {
     if (session !== undefined && session !== null) {
       setLoggedIn(true);
@@ -34,13 +41,23 @@ function Next() {
           <h1 className={styles.title}>
             <span>S</span>trane<span>.</span>
           </h1>
-          <h2 className={styles.create}>Create account</h2>
+          {action == "signin" ? (
+            <h2 className={styles.create}>Sign In</h2>
+          ) : action == "signup" ? (
+            <h2 className={styles.create}>Create account</h2>
+          ) : (
+            <p></p>
+          )}
         </div>
 
         <LazyMotion features={domAnimation}>
           <AnimatePresence mode="wait">
             <m.div
-              key={animation.name + JSON.stringify(loading)}
+              key={
+                animation.name +
+                JSON.stringify(loading) +
+                JSON.stringify(serverVerified)
+              }
               className={styles.right}
               initial="initial"
               animate="animate"
@@ -62,45 +79,26 @@ function Next() {
                 />
               ) : (
                 <>
-                  {" "}
-                  {loggedIn ? (
-                    <LoggedIn />
+                  {!serverVerified ? (
+                    <ServerInfo state={setServerVerified} />
                   ) : (
-                    <form
-                      className={styles.form}
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        toast.error(
-                          "We are sorry, but password authentication is not yet supported."
-                        );
-                      }}
-                    >
-                      <input
-                        className={styles.input}
-                        type="email"
-                        placeholder="Email"
-                      />
-                      <div className={styles.lb} />
-                      <input
-                        className={styles.input}
-                        type="password"
-                        placeholder="Password"
-                      />
-                      <div className={styles.lb} />
-
-                      <input
-                        className={styles.button}
-                        type="submit"
-                        value="Sign Up"
-                      />
-
-                      <p className={styles.switch}>
-                        Already have an account?{" "}
-                        <Link href="/signin" className={styles.lnk}>
-                          Log In
-                        </Link>
-                      </p>
-                    </form>
+                    <>
+                      {loggedIn ? (
+                        <LoggedIn />
+                      ) : (
+                        <>
+                          {action == "signin" ? (
+                            <SignIn />
+                          ) : action == "signup" ? (
+                            <SignUp />
+                          ) : (
+                            <p>
+                              Sorry, action that you requested is not available
+                            </p>
+                          )}
+                        </>
+                      )}
+                    </>
                   )}
                 </>
               )}

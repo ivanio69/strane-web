@@ -1,0 +1,31 @@
+.container {
+  text-align: left;
+  max-width: 400px;
+}
+
+.description {
+  color: #6f6f70;
+}
+
+.container span {
+  font-family: "ui-monospace", monospace;
+}
+
+.button {
+  background-color: #6349ff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  width: 400px;
+  height: 50px;
+}
+
+.button:hover {
+  background-color: #5a3fde;
+}
