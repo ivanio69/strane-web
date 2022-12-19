@@ -4,21 +4,22 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "../../../lib/auth/mongodb";
 
 export const authOptions = {
+  // Set the authentication database
   adapter: MongoDBAdapter(clientPromise),
-  // Configure one or more authentication providers
+
+  // Configure one or more authentication providers (google)
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-
-    // ...add more providers here
   ],
+  // Secret used to encrypt the JWT token
   secret: process.env.JWT_SECRET,
+
   callbacks: {
     async jwt({ token, user, account }) {
       // Persist the OAuth access_token to the token right after signin
-
       if (account && token) {
         token.accToken = account.token;
       }
@@ -29,6 +30,12 @@ export const authOptions = {
       session.token = token;
       return session;
     },
+  },
+  // set custom error page
+  pages: {
+    error: "/auth/error",
+    signIn: "/auth/signin",
+    signUp: "/auth/signup",
   },
 };
 export default NextAuth(authOptions);

@@ -11,6 +11,7 @@ import ServerInfo from "../../lib/components/auth/serverInfo";
 import SignUp from "../../lib/components/auth/SignUp";
 import SignIn from "../../lib/components/auth/SignIn";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 function Next() {
   const router = useRouter();
@@ -19,9 +20,14 @@ function Next() {
   const [loading, setLoading] = useState(true);
   const [serverVerified, setServerVerified] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const { action } = router.query;
+  const { action, error } = router.query;
+  const [serverInfo, setServerInfo] = useState(null);
 
   useEffect(() => {
+    if (error)
+      axios.get("/api/getAuthServer").then((r) => {
+        setServerInfo(r.data);
+      });
     if (session !== undefined && session !== null) {
       setLoggedIn(true);
     }
@@ -57,7 +63,9 @@ function Next() {
                 ) : action == "signup" ? (
                   <h2 className={styles.create}>Create account</h2>
                 ) : (
-                  <p></p>
+                  <p className={styles.create + " " + styles.error}>
+                    An error has occured
+                  </p>
                 )}
               </div>
               <LazyMotion features={domAnimation}>
@@ -89,23 +97,60 @@ function Next() {
                       />
                     ) : (
                       <>
-                        {!serverVerified ? (
-                          <ServerInfo state={setServerVerified} />
+                        {error ? (
+                          <div className={styles.errorBox}>
+                            <h2>Oops!</h2>
+                            <p>
+                              An error has occured. Please, try again. If this
+                              error presists, please, report this to us:
+                            </p>
+                            <p>
+                              Error code: <span>{error}</span>
+                            </p>
+                            <p>
+                              Session:{" "}
+                              <span>
+                                {session
+                                  ? session.user.email
+                                  : "no session has been created"}
+                              </span>
+                            </p>
+                            <p>
+                              Auth server:{" "}
+                              <span>
+                                {serverInfo
+                                  ? serverInfo.name
+                                  : "unable to access auth server"}
+                              </span>
+                            </p>
+                            <button
+                              onClick={() => router.replace("/")}
+                              className={styles.button}
+                            >
+                              Go back
+                            </button>
+                          </div>
                         ) : (
                           <>
-                            {loggedIn ? (
-                              <LoggedIn />
+                            {!serverVerified ? (
+                              <ServerInfo state={setServerVerified} />
                             ) : (
                               <>
-                                {action == "signin" ? (
-                                  <SignIn />
-                                ) : action == "signup" ? (
-                                  <SignUp />
+                                {loggedIn ? (
+                                  <LoggedIn />
                                 ) : (
-                                  <p>
-                                    Sorry, action that you requested is not
-                                    available
-                                  </p>
+                                  <>
+                                    {action == "signin" ? (
+                                      <SignIn />
+                                    ) : action == "signup" ? (
+                                      <SignUp />
+                                    ) : (
+                                      <p>
+                                        Sorry, action that you requested is not
+                                        available
+                                      </p>
+                                    )}
+                                  </>
                                 )}
                               </>
                             )}
