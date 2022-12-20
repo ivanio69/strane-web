@@ -34,18 +34,19 @@ export default function App({
   const animation = animlib[0];
   const [theme, setTheme] = useState("light");
   useEffect(() => {
-    if (
-      document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("theme="))
-        .split("=")[1] == "dark"
-    ) {
-      setTheme("dark");
-      import("./styles/darkTheme.css");
-    } else {
-      setTheme("light");
-      import("./styles/lightTheme.css");
-    }
+    if (document.cookie)
+      if (
+        document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("theme="))
+          .split("=")[1] == "dark"
+      ) {
+        setTheme("dark");
+        import("./styles/darkTheme.css");
+      } else {
+        setTheme("light");
+        import("./styles/lightTheme.css");
+      }
   });
   return (
     <>
@@ -125,7 +126,7 @@ export default function App({
                 transition={animation.transition}
                 opacity={0}
               >
-                <Component {...pageProps} />
+                <Component {...pageProps} theme={theme} />
               </m.div>
             </AnimatePresence>
           </LazyMotion>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./styles/home.module.css";
 import SwitchTheme from "../lib/components/SwitchTheme";
 
-function Home() {
+function Home({ theme }) {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     if (
@@ -16,7 +16,7 @@ function Home() {
   }, []);
   return (
     <React.Fragment>
-      <SwitchTheme />
+      <SwitchTheme theme={theme} />
       <div className={styles.container}>
         <div>
           <h2 className={styles.welcome}>Welcome to the</h2>
