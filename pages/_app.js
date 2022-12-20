@@ -32,6 +32,21 @@ export default function App({
   router,
 }) {
   const animation = animlib[0];
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    if (
+      document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("theme="))
+        .split("=")[1] == "dark"
+    ) {
+      setTheme("dark");
+      import("./styles/darkTheme.css");
+    } else {
+      setTheme("light");
+      import("./styles/lightTheme.css");
+    }
+  });
   return (
     <>
       <Head>
@@ -86,7 +101,7 @@ export default function App({
           sizes="1024x1024"
         />
       </Head>
-      <ToastContainer />
+      <ToastContainer theme={theme} />
       <div className="titlebar">
         <p>
           <span>S</span>TRANE<span>.</span>

@@ -1,0 +1,20 @@
+html {
+  --textColor: #000000;
+  --bgColor: #ffffff;
+  --accentColor: #6349ff;
+  --accentColor2: #5a3fde;
+
+  --bgDimmed: #f1f1f1;
+  --bgDimmed2: #000000;
+  --textDimmed: #6f6f70;
+  --textDimmed2: #757171;
+}
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.titlebar {
+  color: #000000;
+}

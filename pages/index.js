@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./styles/home.module.css";
+import SwitchTheme from "../lib/components/SwitchTheme";
 
 function Home() {
   const [isMobile, setIsMobile] = useState(false);
@@ -15,6 +16,7 @@ function Home() {
   }, []);
   return (
     <React.Fragment>
+      <SwitchTheme />
       <div className={styles.container}>
         <div>
           <h2 className={styles.welcome}>Welcome to the</h2>

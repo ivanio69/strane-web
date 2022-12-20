@@ -7,34 +7,45 @@ import LoggedIn from "../../lib/components/auth/loggedIn";
 import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
 import { Grid } from "react-loader-spinner";
 import { animlib } from "../../lib/animations";
-import ServerInfo from "../../lib/components/auth/serverInfo";
+// import ServerInfo from "../../lib/components/auth/serverInfo";
 import SignUp from "../../lib/components/auth/SignUp";
 import SignIn from "../../lib/components/auth/SignIn";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function Next() {
   const router = useRouter();
   const { data: session } = useSession();
   const animation = animlib[0];
   const [loading, setLoading] = useState(true);
-  const [serverVerified, setServerVerified] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const { action, error } = router.query;
   const [serverInfo, setServerInfo] = useState(null);
 
   useEffect(() => {
-    if (error)
-      axios.get("/api/getAuthServer").then((r) => {
-        setServerInfo(r.data);
-      });
+    axios.get("/api/getAuthServer").then((r) => {
+      if (!loading && typeof window !== "undefined") {
+        // get server info and display it as a toast.info
+        toast.info(
+          <p>
+            <p>Server name: {r.data.name}</p>
+            <p>Server IP: {r.data.ip}</p>
+            <p>Server provider: {r.data.provider.fullName}</p>
+          </p>,
+          {}
+        );
+      }
+      setServerInfo(r.data);
+    });
+
     if (session !== undefined && session !== null) {
       setLoggedIn(true);
     }
     setTimeout(() => {
       setLoading(false);
     }, 750);
-  }, [session]);
+  }, [loading]); // link to loading state to avoid double toast info
 
   return (
     <React.Fragment>
@@ -71,11 +82,7 @@ function Next() {
               <LazyMotion features={domAnimation}>
                 <AnimatePresence mode="wait">
                   <m.div
-                    key={
-                      animation.name +
-                      JSON.stringify(loading) +
-                      JSON.stringify(serverVerified)
-                    }
+                    key={animation.name + JSON.stringify(loading)}
                     className={styles.right}
                     initial="initial"
                     animate="animate"
@@ -132,25 +139,19 @@ function Next() {
                           </div>
                         ) : (
                           <>
-                            {!serverVerified ? (
-                              <ServerInfo state={setServerVerified} />
+                            {loggedIn ? (
+                              <LoggedIn />
                             ) : (
                               <>
-                                {loggedIn ? (
-                                  <LoggedIn />
+                                {action == "signin" ? (
+                                  <SignIn />
+                                ) : action == "signup" ? (
+                                  <SignUp />
                                 ) : (
-                                  <>
-                                    {action == "signin" ? (
-                                      <SignIn />
-                                    ) : action == "signup" ? (
-                                      <SignUp />
-                                    ) : (
-                                      <p>
-                                        Sorry, action that you requested is not
-                                        available
-                                      </p>
-                                    )}
-                                  </>
+                                  <p>
+                                    Sorry, action that you requested is not
+                                    available
+                                  </p>
                                 )}
                               </>
                             )}
@@ -169,7 +170,7 @@ function Next() {
                     signIn("google");
                   }}
                 >
-                  <span>Or use authentication provider:</span>{" "}
+                  <p>Or use authentication provider:</p>{" "}
                   <div className={styles.item}>
                     <Image src="/icons/google.svg" width={30} height={30} />{" "}
                     <span>Google</span>

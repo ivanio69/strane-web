@@ -1,6 +1,6 @@
 .item {
   margin: 20px;
-  background: #f1f1f1;
+  background: var(--bgDimmed);
   padding: 20px;
   border-radius: 20px;
 }

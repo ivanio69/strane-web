@@ -12,7 +12,7 @@
 }
 
 .welcome {
-  color: #6f6f70;
+  color: var(--textDimmed);
   font-size: 2.2rem;
   font-weight: 500;
   margin-bottom: -1rem;
@@ -24,12 +24,12 @@
 }
 
 .title span {
-  color: #6349ff;
+  color: var(--accentColor);
 }
 
 .button {
-  background-color: #6349ff;
-  color: #fff;
+  background-color: var(--accentColor);
+  color: var(--bgColor);
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -42,7 +42,7 @@
 }
 
 .button:hover {
-  background-color: #5a3fde;
+  background-color: var(--accentColor2);
 }
 
 .switch {
@@ -50,7 +50,7 @@
 }
 
 .lnk {
-  color: #6349ff;
+  color: var(--accentColor);
 }
 
 @media screen and (max-width: 768px) {
