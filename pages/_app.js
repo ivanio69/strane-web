@@ -47,6 +47,10 @@ export default function App({
         setTheme("light");
         import("./styles/lightTheme.css");
       }
+    else {
+      setTheme("light");
+      import("./styles/lightTheme.css");
+    }
   });
   return (
     <>
