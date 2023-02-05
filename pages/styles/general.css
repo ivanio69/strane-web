@@ -6,3 +6,12 @@
   box-sizing: border-box;
   font-family: "Jost", sans-serif;
 }
+.appContainer {
+  min-height: calc(90vh-30px);
+  padding-top: 30px;
+}
+
+a {
+  text-decoration: none;
+  color: #6349ff;
+}
