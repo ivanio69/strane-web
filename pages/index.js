@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./styles/home.module.css";
-import SwitchTheme from "../lib/components/SwitchTheme";
-import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
-import { animlib } from "../lib/animations";
 import Image from "next/image";
 function Home({ theme }) {
-  const animation = animlib[0];
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     if (
