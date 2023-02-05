@@ -35,15 +35,20 @@ export default function App({
   const [theme, setTheme] = useState("light");
   useEffect(() => {
     if (document.cookie)
-      if (
-        document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("theme="))
-          .split("=")[1] == "dark"
-      ) {
-        setTheme("dark");
-        import("./styles/darkTheme.css");
-      } else {
+      if (document.cookie.split("; ").find((row) => row.startsWith("theme=")))
+        if (
+          document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("theme="))
+            .split("=")[1] == "dark"
+        ) {
+          setTheme("dark");
+          import("./styles/darkTheme.css");
+        } else {
+          setTheme("light");
+          import("./styles/lightTheme.css");
+        }
+      else {
         setTheme("light");
         import("./styles/lightTheme.css");
       }

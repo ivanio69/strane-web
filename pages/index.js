@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./styles/home.module.css";
 import SwitchTheme from "../lib/components/SwitchTheme";
-
+import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
+import { animlib } from "../lib/animations";
+import Image from "next/image";
 function Home({ theme }) {
+  const animation = animlib[0];
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     if (
@@ -13,33 +16,97 @@ function Home({ theme }) {
     ) {
       setIsMobile(true);
     }
+    document.body.style.overflowY = "auto";
   }, []);
   return (
     <React.Fragment>
-      <SwitchTheme theme={theme} />
       <div className={styles.container}>
-        <div>
-          <h2 className={styles.welcome}>Welcome to the</h2>
-
-          <h1 className={styles.title}>
-            <span>S</span>trane<span>.</span>
-          </h1>
-        </div>
-        <div>
-          <Link href="/auth/signup">
-            <button className={styles.button}>Start</button>
-          </Link>
-          <p className={styles.switch}>
-            Already have an account?{" "}
-            <Link href="/auth/signin" className={styles.lnk}>
-              Log In
+        <header className={styles.header}>
+          <div className={styles.header_logo}>
+            <Link href="/">
+              <p>
+                <span>S</span>trane
+              </p>
             </Link>
-          </p>
-        </div>
-        <p className={styles.tos}>
-          By continuing you accept our standard terms and condition and our
-          privacy policy.
-        </p>
+          </div>
+          <div className={styles.header_try}>
+            <Link href="/try">
+              <button>Try Beta</button>
+            </Link>
+          </div>
+        </header>
+
+        <main>
+          <div className={styles.main}>
+            <div className={styles.main_left}>
+              <h1>
+                Simple. Secure. <br />
+                Reliable messaging.
+              </h1>
+              <p>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum.
+              </p>
+              <div className={styles.main_left_buttons}>
+                <button>Try Beta</button>
+              </div>
+            </div>
+            <div className={styles.main_right}>
+              <Image
+                width={isMobile ? 0 : 727.54}
+                height={isMobile ? 0 : 594.47}
+                src={"/static/index/ind1.png"}
+                alt="A phone with strane open in it"
+              />
+            </div>
+
+            <div className={styles.main_appTiles}>
+              <div className={styles.main_appTiles_tile}>
+                <Image
+                  src={"/static/index/ind2.png"}
+                  alt="Mac, Windows and Linux icon"
+                  width={150.06}
+                  height={45}
+                />
+                <p className={styles.main_appTiles_tile_title}>Any Plathform</p>
+                <p className={styles.main_appTiles_tile_text}>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting.
+                </p>
+                <a href="/home/more/applications">Learn More</a>
+              </div>
+              <div className={styles.main_appTiles_tile}>
+                <Image
+                  src={"/static/index/ind2.png"}
+                  alt="Mac, Windows and Linux icon"
+                  width={150.06}
+                  height={45}
+                />
+                <p className={styles.main_appTiles_tile_title}>Any Plathform</p>
+                <p className={styles.main_appTiles_tile_text}>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting.
+                </p>
+                <a href="/home/more/applications">Learn More</a>
+              </div>
+              <div className={styles.main_appTiles_tile}>
+                <Image
+                  src={"/static/index/ind2.png"}
+                  alt="Mac, Windows and Linux icon"
+                  width={150.06}
+                  height={45}
+                />
+                <p className={styles.main_appTiles_tile_title}>Any Plathform</p>
+                <p className={styles.main_appTiles_tile_text}>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting.
+                </p>
+                <a href="/home/more/applications">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
     </React.Fragment>
   );

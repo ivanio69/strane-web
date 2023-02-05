@@ -27,14 +27,14 @@ function Next() {
     axios.get("/api/getAuthServer").then((r) => {
       if (!loading && typeof window !== "undefined") {
         // get server info and display it as a toast.info
-        toast.info(
-          <p>
-            <p>Server name: {r.data.name}</p>
-            <p>Server IP: {r.data.ip}</p>
-            <p>Server provider: {r.data.provider.fullName}</p>
-          </p>,
-          {}
-        );
+        // toast.info(
+        //   <p>
+        //     <p>Server name: {r.data.name}</p>
+        //     <p>Server IP: {r.data.ip}</p>
+        //     <p>Server provider: {r.data.provider.fullName}</p>
+        //   </p>,
+        //   {}
+        // );
       }
       setServerInfo(r.data);
     });
@@ -48,7 +48,7 @@ function Next() {
   }, [loading]); // link to loading state to avoid double toast info
 
   return (
-    <React.Fragment>
+    <React.Fragment className={styles.warp}>
       <Link href="/">
         <p className={styles.back}> {"<"}</p>
       </Link>

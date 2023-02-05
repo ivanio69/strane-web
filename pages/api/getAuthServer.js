@@ -6,10 +6,10 @@ export default (req, res) => {
   async function run() {
     try {
       const database = client.db("STR_LCINF_EU-EAST-1");
-      const movies = database.collection("config");
+      const config = database.collection("config");
       const query = {};
-      const movie = await movies.findOne(query);
-      res.send(movie);
+      const r = await config.findOne(query);
+      res.send(r);
     } finally {
       // Ensures that the client will close when you finish/error
       await client.close();
